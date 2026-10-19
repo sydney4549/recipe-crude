@@ -2,6 +2,7 @@ require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const path = require('path');
+const fs = require('fs');
 const pool = require('./db');
 
 const app = express();
@@ -9,7 +10,9 @@ app.use(cors());
 app.use(express.json());
 
 // Serve the frontend from the same server (one link for page + API)
-app.use(express.static(path.join(__dirname, '..', 'frontend')));
+const FRONTEND = [path.join(__dirname, 'frontend'), path.join(__dirname, '..', 'frontend')]
+  .find(p => fs.existsSync(p));
+if (FRONTEND) app.use(express.static(FRONTEND));
 
 const FIELDS = ['title', 'description', 'ingredients', 'instructions', 'prep_time_minutes', 'servings', 'category'];
 
