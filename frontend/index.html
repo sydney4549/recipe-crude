@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Recipe Cards</title>
+<style>
+  body { font-family: Arial, sans-serif; max-width: 1000px; margin: 20px auto; padding: 0 12px; }
+  h1 { text-align: center; }
+  form { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 20px; }
+  form input, form textarea { padding: 8px; font-size: 14px; }
+  .full { grid-column: 1 / -1; }
+  button { padding: 8px 14px; cursor: pointer; }
+  table { width: 100%; border-collapse: collapse; font-size: 14px; }
+  th, td { border: 1px solid #ccc; padding: 6px; text-align: left; }
+  th { background: #f0f0f0; }
+  .wrap { overflow-x: auto; }
+</style>
+</head>
+<body>
+<h1>Personal Recipe Cards</h1>
+
+<form id="recipeForm">
+  <input type="hidden" id="recipeId">
+  <input class="full" id="title" placeholder="Title *" required>
+  <input class="full" id="description" placeholder="Short description">
+  <textarea class="full" id="ingredients" placeholder="Ingredients" rows="2"></textarea>
+  <textarea class="full" id="instructions" placeholder="Instructions" rows="2"></textarea>
+  <input id="prep_time_minutes" type="number" placeholder="Prep time (minutes)">
+  <input id="servings" type="number" placeholder="Servings">
+  <input class="full" id="category" placeholder="Category (e.g. Main, Dessert)">
+  <div class="full">
+    <button type="submit" id="saveBtn">Add Recipe</button>
+    <button type="button" id="cancelBtn" style="display:none">Cancel Edit</button>
+  </div>
+</form>
+
+<div class="wrap">
+<table>
+  <thead>
+    <tr><th>ID</th><th>Title</th><th>Category</th><th>Prep (min)</th><th>Servings</th><th>Ingredients</th><th>Actions</th></tr>
+  </thead>
+  <tbody id="tableBody"></tbody>
+</table>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
