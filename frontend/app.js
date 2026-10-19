@@ -1,5 +1,5 @@
 // Change this to your deployed URL when you deploy, e.g. https://your-app.onrender.com
-const API_URL = 'http://localhost:3000/api/recipes';
+const API_URL = location.protocol === 'file:' ? 'http://localhost:3000/api/recipes' : '/api/recipes';
 
 const form = document.getElementById('recipeForm');
 const tableBody = document.getElementById('tableBody');
